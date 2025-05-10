@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+
+
 
 struct ContentView: View {
+    @AppStorage("login_status") var loginStatus: Bool = Auth.auth().currentUser == nil ? false : true
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if loginStatus {
+        HomeView()
+        }else {
+           LoginView()
         }
-        .padding()
+        
     }
 }
 
